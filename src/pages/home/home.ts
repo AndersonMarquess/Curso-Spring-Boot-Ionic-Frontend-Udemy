@@ -10,8 +10,15 @@ import { NavController, IonicPage } from 'ionic-angular';
 })
 export class HomePage {
 
+  //Para declarar uma dependência de uma classe, informamos ela na assinatura do construtor
   constructor(public navCtrl: NavController) {
 
   }
 
+  //Métodos
+  
+  login() {
+    //Chama uma página SEM empilhar as telas uma em cima da outra
+    this.navCtrl.setRoot("CategoriasPage");
+  }
 }

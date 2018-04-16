@@ -2,14 +2,17 @@
 <ion-content padding>
   <h3>Sistema de Pedidos</h3>
 
-  <img src="assets/imgs/ica-slidebox.png" alt="Logo inicial do aplicativo"/>
+  <div>
+    <img src="assets/imgs/ica-slidebox.png" alt="Logo inicial do aplicativo" class="diminuirLogo"/>
+  </div>
+    
   
   <!--Criando formulário -->
   <form>
     <!-- Cria um elemento -->
     <ion-item>
       <!-- Cria uma label -->
-      <ion-label stacked>Email</ion-label>
+      <ion-label stacked>E-mail</ion-label>
       <!-- Cria uma entrada de dados do tipo texto -->
       <ion-input type="text"></ion-input>
     </ion-item>
@@ -22,7 +25,8 @@
     </ion-item>
 
     <!-- Cria um botão -->
-    <button ion-button block>Entrar</button>
+    <!-- (Click) ="login()" significa que no click o evento chama o método login do controlador dessa view -->
+    <button ion-button block (click)="login()">Entrar</button>
   </form>
   <!-- Cria um botão -->
   <button ion-button block outline>Registrar</button>
