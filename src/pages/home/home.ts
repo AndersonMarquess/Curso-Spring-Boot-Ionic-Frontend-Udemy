@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, IonicPage } from 'ionic-angular';
+import { NavController, IonicPage, MenuController } from 'ionic-angular';
 
 
 @IonicPage()
@@ -11,7 +11,7 @@ import { NavController, IonicPage } from 'ionic-angular';
 export class HomePage {
 
   //Para declarar uma dependência de uma classe, informamos ela na assinatura do construtor
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public menu: MenuController) {
 
   }
 
@@ -20,5 +20,17 @@ export class HomePage {
   login() {
     //Chama uma página SEM empilhar as telas uma em cima da outra
     this.navCtrl.setRoot("CategoriasPage");
+  }
+
+  //Executa quando carrega a página igual o initialize
+  ionViewDidLoad(){
+    //Desabilita o swipe do menu na tela home
+    this.menu.swipeEnable(false);
+  }
+
+  //Executa quando sai da página
+  ionViewDidLeave(){
+    //Habilita o swipe do menu na tela home
+    this.menu.swipeEnable(true);
   }
 }
