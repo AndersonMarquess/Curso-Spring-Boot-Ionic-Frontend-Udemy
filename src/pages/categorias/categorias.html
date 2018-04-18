@@ -16,7 +16,7 @@
   <ion-list>
   <!-- Item da thumbnail -->
   <!-- *ngFor vai fazer um for com o tamanho da lista especificada, neste caso a lista é o items. -->
-  <button ion-item *ngFor="let item of items" (click)="showProdutos()">
+  <button ion-item *ngFor="let item of items" (click)="showProdutos(item.id)">
     <ion-thumbnail item-start>
       <img src="assets/icon/rotulo.jpg">
     </ion-thumbnail>
