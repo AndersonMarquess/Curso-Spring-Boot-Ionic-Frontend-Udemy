@@ -19,7 +19,9 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: "HomePage" },
+      //Itens que aparecem no menu lateral
+      { title: 'Profile', component: "ProfilePage" },
+      { title: 'Categorias', component: "CategoriasPage" }
     ];
 
   }
