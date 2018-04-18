@@ -26,7 +26,7 @@ export class ProdutosPage {
     }, error =>{});
   }
 
-  //Carregaria e atribuiria a url da imagem, mas não criado o bucket...
+  //Carregaria e atribuiria a url da imagem, mas não foi criado o bucket...
   loadImageUrls() {
     for(var i = 0; i<this.items.length; i++) {
       let item = this.items[i];

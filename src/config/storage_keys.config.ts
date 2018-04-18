@@ -1,1 +1,1 @@
-export const STORAGE_KEY = { localUser : "localUser" }
+export const STORAGE_KEY = { localUser : "localUser", cart:"cursoSpringBootEIonic" }
