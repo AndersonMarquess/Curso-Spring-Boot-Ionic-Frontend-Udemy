@@ -24,7 +24,13 @@ export class ProfilePage {
       this.clienteService.findByEmail(localUser.email).subscribe(resposta => {
         this.cliente = resposta;
         //Não tem bucket para buscar imagem...
-      }, error =>{})
+      }, error =>{
+        if(error.status == 403) {
+          this.navCtrl.setRoot('HomePage');
+        }
+      });
+    }else {
+      this.navCtrl.setRoot('HomePage');
     }
   }
 }
