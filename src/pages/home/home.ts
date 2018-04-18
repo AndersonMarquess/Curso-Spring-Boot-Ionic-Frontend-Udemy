@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage, MenuController } from 'ionic-angular';
 import { CredenciaisDTO } from '../../models/credenciais.dto';
+import { AuthService } from '../../services/auth.service';
 
 
 @IonicPage()
@@ -14,16 +15,19 @@ export class HomePage {
   credenciais : CredenciaisDTO = { email : "", senha : "" }
 
   //Para declarar uma dependência de uma classe, informamos ela na assinatura do construtor
-  constructor(public navCtrl: NavController, public menu: MenuController) {
+  constructor(public navCtrl: NavController, public menu: MenuController, public auth : AuthService) {
 
   }
 
   //Métodos
   
   login() {
-    //Chama uma página SEM empilhar as telas uma em cima da outra
-    console.log(this.credenciais);
-    this.navCtrl.setRoot("CategoriasPage");
+    this.auth.authenticate(this.credenciais).subscribe(resposta => {
+      console.log(resposta.headers.get('Authorization'));
+      
+      //Chama uma página SEM empilhar as telas uma em cima da outra
+      this.navCtrl.setRoot("CategoriasPage");
+    }, error => {})
   }
 
   //Executa quando carrega a página igual o initialize
