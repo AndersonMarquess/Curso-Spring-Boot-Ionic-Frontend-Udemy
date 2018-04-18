@@ -32,9 +32,7 @@ export class CategoriasPage {
         console.log(resposta)
         this.items = resposta;
       }, 
-      error => {
-        console.log(error)
-      });
+      error => {});
   }
 
 }
