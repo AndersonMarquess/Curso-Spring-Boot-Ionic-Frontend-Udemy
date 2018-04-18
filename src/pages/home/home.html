@@ -14,14 +14,16 @@
       <!-- Cria uma label -->
       <ion-label stacked>E-mail</ion-label>
       <!-- Cria uma entrada de dados do tipo texto -->
-      <ion-input type="text"></ion-input>
+       <!-- [(ngModel)]="credenciais.email name="email"" vai preencher a informação no controlador -->
+      <ion-input [(ngModel)]="credenciais.email" name="email" type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <!-- Cria uma label -->
       <ion-label stacked>Senha</ion-label>
       <!-- Cria uma entrada de dados do tipo senha com mascara -->
-      <ion-input type="password"></ion-input>
+      <!-- [(ngModel)]="credenciais.senha name="senha"" vai preencher a informação no controlador -->
+      <ion-input [(ngModel)]="credenciais.senha" name="senha" type="password"></ion-input>
     </ion-item>
 
     <!-- Cria um botão -->
