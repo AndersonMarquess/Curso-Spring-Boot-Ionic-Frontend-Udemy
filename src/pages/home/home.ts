@@ -27,13 +27,19 @@ export class HomePage {
       
       //Chama uma página SEM empilhar as telas uma em cima da outra
       this.navCtrl.setRoot("CategoriasPage");
-    }, error => {})
+    }, error => {});
   }
 
   //Executa quando carrega a página igual o initialize
-  ionViewDidLoad(){
+  ionViewDidLoad() {
     //Desabilita o swipe do menu na tela home
     this.menu.swipeEnable(false);
+  }
+  ionViewDidEnter() {
+    this.auth.refreshToken().subscribe(resposta => {
+      this.auth.sucessfulLogin(resposta.headers.get('Authorization'));
+      this.navCtrl.setRoot("CategoriasPage");
+    }, error => { });
   }
 
   //Executa quando sai da página

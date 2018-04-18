@@ -21,7 +21,7 @@ export class AuthService {
             //Evita o erro de Parse de JSON caso esteja com corpo vazio
             responseType : 'text'
 
-        })
+        });
     }
 
     sucessfulLogin(authorizationValue : string) {
@@ -32,6 +32,16 @@ export class AuthService {
             email :  this.jwtHelper.decodeToken(tok).sub
         };
         this.storage.setLocalUser(user);
+    }
+
+    refreshToken() {
+        return this.http.post(`${API_CONFIG.baseUrl}/auth/refresh_token`, {}, {
+            //Esse observe vai receber o header de resposta
+            observe: 'response',
+            //Evita o erro de Parse de JSON caso esteja com corpo vazio
+            responseType: 'text'
+
+        });
     }
 
     logout() {
