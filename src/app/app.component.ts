@@ -17,7 +17,7 @@ export class MyApp {
   pages: Array<{title: string, component: string}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar,
-     public splashScreen: SplashScreen, public auth : AuthService) {
+    public splashScreen: SplashScreen, public auth : AuthService) {
       this.initializeApp();
 
       // used for an example of ngFor and navigation

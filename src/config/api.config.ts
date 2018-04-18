@@ -2,5 +2,6 @@
 
 export const API_CONFIG = {
      baseUrl : "http://localhost:8081"
-    //  ,bucketUrl : www.imagem.com
+     //Não foi criado um bucket para armazenar imagens
+     , bucketBaseUrl : "www.imagem.com"
 }
