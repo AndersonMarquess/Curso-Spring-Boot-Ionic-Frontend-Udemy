@@ -47,4 +47,9 @@ export class HomePage {
     //Habilita o swipe do menu na tela home
     this.menu.swipeEnable(true);
   }
+
+  signup() {
+    //Vai empilhar a página, permitindo voltar
+    this.navCtrl.push('SignupPage');
+  }
 }
