@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CidadeService } from '../../services/domain/cidade.service';
 import { EstadoService } from '../../services/domain/estado.service';
 import { EstadoDTO } from '../../models/estado.dto';
 import { CidadeDTO } from '../../models/cidade.dto';
+import { ClienteService } from '../../services/domain/cliente.service';
 
 @IonicPage()
 @Component({
@@ -22,7 +23,9 @@ export class SignupPage {
     public navParams: NavParams, 
     public formBuilder : FormBuilder,
     public cidadeService : CidadeService,
-    public estadoService : EstadoService) {
+    public estadoService : EstadoService,
+    public clienteService : ClienteService,
+    public alertController : AlertController) {
 
     this.formGroup = this.formBuilder.group({
       //Especifica valores padrão, depois os valores de validação minimo e máximo
@@ -61,8 +64,29 @@ export class SignupPage {
     }, error => {});
   }
 
-  signupUser(){
-    console.log("enviou o form");
+  signupUser() {
+    console.log(this.formGroup.value);
+    this.clienteService.insert(this.formGroup.value).subscribe(resposta => {
+      this.showInsertOk();
+    }, error => {});
+  }
+
+
+  showInsertOk() {
+    console.log("Usuário inserido");
+    let alert = this.alertController.create({
+      title : "Sucesso!",
+      message : "Cadastro efetuado com sucesso",
+      //Só desabilitar se clicat na mensagem
+      enableBackdropDismiss : false,
+      buttons: [
+        {
+          text : 'ok',
+          handler : () => {this.navCtrl.pop();}
+        }
+      ]
+    });
+    alert.present();
   }
 
 }
