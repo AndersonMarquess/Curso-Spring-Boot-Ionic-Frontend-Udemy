@@ -23,7 +23,7 @@ export class HomePage {
   
   login() {
     this.auth.authenticate(this.credenciais).subscribe(resposta => {
-      console.log(resposta.headers.get('Authorization'));
+      this.auth.sucessfulLogin(resposta.headers.get('Authorization'));
       
       //Chama uma página SEM empilhar as telas uma em cima da outra
       this.navCtrl.setRoot("CategoriasPage");
