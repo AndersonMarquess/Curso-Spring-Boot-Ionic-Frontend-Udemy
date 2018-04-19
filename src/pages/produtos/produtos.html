@@ -11,6 +11,15 @@
 
 
 <ion-content padding>
+<!-- Coloca o carrinho de compras, na parte superior direita do aplicativo -->
+<ion-fab right edge>
+  <!-- Navpush no botão -->
+  <button navPush="CartPage" ion-fab mini>
+    <ion-icon name="cart">
+    </ion-icon>
+  </button>
+</ion-fab>
+
   <ion-list>
     <button ion-item *ngFor="let item of items" (click)="showDetail(item.id)">
       <ion-thumbnail item-start>

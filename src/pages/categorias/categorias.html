@@ -7,13 +7,22 @@
     </button>
     <ion-title>Categorias</ion-title>
   </ion-navbar>
-
+  
 </ion-header>
 
 
-<!-- Faz a lista com os nomes das categorias -->
 <ion-content padding>
+  <!-- Coloca o carrinho de compras, na parte superior direita do aplicativo -->
+  <ion-fab right edge>
+    <!-- Navpush no botão -->
+    <button navPush="CartPage" ion-fab mini>
+      <ion-icon name="cart">
+      </ion-icon>
+    </button>
+  </ion-fab>
+  
   <ion-list>
+  <!-- Faz a lista com os nomes das categorias -->
   <!-- Item da thumbnail -->
   <!-- *ngFor vai fazer um for com o tamanho da lista especificada, neste caso a lista é o items. -->
   <button ion-item *ngFor="let item of items" (click)="showProdutos(item.id)">

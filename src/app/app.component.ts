@@ -25,6 +25,7 @@ export class MyApp {
         //Itens que aparecem no menu lateral
         { title: 'Profile', component: "ProfilePage" },
         { title: 'Categorias', component: "CategoriasPage" },
+        { title: 'Carrinho', component: "CartPage" },
         { title: 'Logout', component: "" }
       ];
   }
