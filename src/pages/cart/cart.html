@@ -26,7 +26,7 @@
       <ion-icon name="trash" item-end color="danger" (click)="removerItem(item.produto)"></ion-icon>
     </ion-item>
 
-    <!-- //Só exibi o total do carrinho se o valor dele for maior que zero -->
+    <!-- Só exibi o total do carrinho se o valor dele for maior que zero -->
     <ion-item *ngIf="total() >0 ">
       <h1>Total</h1>
       <h1 item-end>{{total() | currency}}</h1>
@@ -37,4 +37,5 @@
     </ion-item>
   </ion-list>
   <button ion-button block (click)="continuarComprando()">Continuar Comprando</button>
+  <button ion-button block (click)="finalizarPedido()" color="secondary">Finalizar Pedido</button>
 </ion-content>
