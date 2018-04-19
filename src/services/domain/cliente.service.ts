@@ -15,6 +15,10 @@ export class ClienteService {
         return this.http.get(`${API_CONFIG.baseUrl}/clientes/email?value=${email}`);
     }
 
+    findById(id : string) {
+        return this.http.get(`${API_CONFIG.baseUrl}/clientes/${id}`);
+    }
+
     insert(cli : ClienteDTO) {
         return this.http.post(`${API_CONFIG.baseUrl}/clientes`,
             cli, {
