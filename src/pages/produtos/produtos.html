@@ -11,6 +11,12 @@
 
 
 <ion-content padding>
+<!-- Refresh -->
+<ion-refresher (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
+
+
 <!-- Coloca o carrinho de compras, na parte superior direita do aplicativo -->
 <ion-fab right edge>
   <!-- Navpush no botão -->
@@ -30,5 +36,10 @@
       <p>{{ item.preco | currency }}</p>
     </button>
   </ion-list>
+
+  <!-- Infite scroll -->
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

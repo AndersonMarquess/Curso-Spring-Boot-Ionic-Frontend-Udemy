@@ -14,8 +14,8 @@ export class ProdutoService {
      }
 
      //Mostrar produtos de acordo com a categoria
-     findByCategoria(categoria_id : string) {
-         return this.http.get<ProdutoDTO>(`${API_CONFIG.baseUrl}/produtos?categoria=${categoria_id}`);
+    findByCategoria(categoria_id: string, page: number = 0, linesPerPage : number = 24) {
+        return this.http.get(`${API_CONFIG.baseUrl}/produtos?categoria=${categoria_id}&page=${page}&linesPerPage=${linesPerPage}`);
      }
 
      //Não funciona, não criei o bucket para armazenas imagens com valores padronizados, testar com o img.ur ou outro site para hospedar
