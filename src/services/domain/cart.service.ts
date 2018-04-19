@@ -29,11 +29,60 @@ export class CartService {
         //Procura nos itens do carrinho o item do argumento e caso o mesmo seja localizado então sua posição é retornada.
         let position = cart.items.findIndex(x => x.produto.id == produtoDTO.id);
         if(position == -1) {
-            //Push inseri um elemento na lista
+            //Push inseri um elemento da lista
             cart.items.push({quantidade : 1, produto : produtoDTO});
+            this.storage.setCart(cart);
+            return cart;
+            
+            //Alterado
+        }else {
+            this.incrementarQuantidade(produtoDTO);
         }
+    }
 
-        this.storage.setCart(cart);
-        return cart;
+    removeProduto(produtoDTO: ProdutoDTO) : Cart {
+        let cart = this.getCart();
+        let position = cart.items.findIndex(x => x.produto.id == produtoDTO.id);
+        if(position != -1) {
+            //Splice remove um elemento da lista
+            cart.items.splice(position, 1);
+
+            this.storage.setCart(cart);
+            return cart;
+        }
+    }
+
+    incrementarQuantidade(produtoDTO: ProdutoDTO) : Cart {
+        let cart = this.getCart();
+        let position = cart.items.findIndex(x => x.produto.id == produtoDTO.id);
+        if(position != -1) {
+            cart.items[position].quantidade++;
+            this.storage.setCart(cart);
+            return cart;
+        }
+    }
+
+    decrementarQuantidade(produtoDTO: ProdutoDTO) : Cart {
+        let cart = this.getCart();
+        let position = cart.items.findIndex(x => x.produto.id == produtoDTO.id);
+        if(position != -1) {
+            cart.items[position].quantidade--;
+            //Se decrementar ao ponto de ficar negativo ele é removido
+            if(cart.items[position].quantidade < 1) {
+                cart = this.removeProduto(produtoDTO);
+            }
+
+            this.storage.setCart(cart);
+            return cart;
+        }
+    }
+
+    total() : number {
+        let cart = this.getCart();
+        let soma = 0;
+        for(var i = 0; i<cart.items.length; i++) {
+            soma += cart.items[i].produto.preco * cart.items[i].quantidade;
+        }
+        return soma;
     }
 }
