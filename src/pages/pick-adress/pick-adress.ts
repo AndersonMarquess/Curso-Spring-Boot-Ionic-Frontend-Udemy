@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EnderecoDTO } from '../../models/endereco.dto';
+import { ClienteService } from '../../services/domain/cliente.service';
+import { ClienteDTO } from '../../models/cliente.dto';
+import { StorageService } from '../../services/storage.service';
 
 @IonicPage()
 @Component({
@@ -10,46 +13,27 @@ import { EnderecoDTO } from '../../models/endereco.dto';
 export class PickAdressPage {
 
   items : EnderecoDTO[];
+  cliente : ClienteDTO;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    public clienteService : ClienteService, public storage : StorageService) {
   }
 
   //Informações MOCK
   ionViewDidLoad() {
-    this.items = [
-      {
-        id :"1",
-        logradouro: "Rua quinze de Novembro",
-        numero: "300",
-        complemento: "Santa Mônica",
-        bairro: "Uberlândia",
-        cep: "1234567",
-        cidade : {
-          id : "1",
-          nome : "Uberlândia",
-          estado : {
-            id : "1",
-            nome : "Minas Gerais"
-          }
+    let localUser = this.storage.getLocalUser();
+    if(localUser && localUser.email) {
+      this.clienteService.findByEmail(localUser.email).subscribe(resposta => {
+        this.items = resposta['enderecos'];
+      }, error => {
+        if (error.status == 403) {
+          this.navCtrl.setRoot('HomePage');
         }
-      },
-      {
-        id :"1",
-        logradouro: "Rua dezesseis de Dezembro",
-        numero: "301",
-        complemento: "Santa Mônica",
-        bairro: "Uberlândia",
-        cep: "8910112",
-        cidade : {
-          id : "1",
-          nome : "Uberlândia",
-          estado : {
-            id : "1",
-            nome : "Minas Gerais"
-          }
-        }
-      }
-    ]
+      });
+    } else {
+      this.navCtrl.setRoot('HomePage');
+    }
+
   }
 
 }

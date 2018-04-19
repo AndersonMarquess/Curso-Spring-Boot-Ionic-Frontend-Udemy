@@ -10,10 +10,9 @@ export class ClienteService {
 
     constructor(public http: HttpClient, public storage : StorageService) {}
 
-    findByEmail(email : string) : Observable<ClienteDTO> {
-
-        //Vai buscar as informação através do email, esse endpoint foi definido no backend, o'headers' passa o Bearer para autorização
-        return this.http.get<ClienteDTO>(`${API_CONFIG.baseUrl}/clientes/email?value=${email}`);
+    findByEmail(email : string) {
+    //Vai buscar as informação através do email, esse endpoint foi definido no backend, o 'headers' passa o Bearer para autorização
+        return this.http.get(`${API_CONFIG.baseUrl}/clientes/email?value=${email}`);
     }
 
     insert(cli : ClienteDTO) {

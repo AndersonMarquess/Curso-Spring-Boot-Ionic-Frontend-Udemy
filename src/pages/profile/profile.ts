@@ -22,7 +22,8 @@ export class ProfilePage {
     let localUser = this.storage.getLocalUser();
     if(localUser && localUser.email) {
       this.clienteService.findByEmail(localUser.email).subscribe(resposta => {
-        this.cliente = resposta;
+        //Cria um cast as ClienteDTO
+        this.cliente = resposta as ClienteDTO;
         //Não tem bucket para buscar imagem...
       }, error =>{
         if(error.status == 403) {
